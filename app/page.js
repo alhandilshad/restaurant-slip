@@ -6,8 +6,14 @@ const page = () => {
   const [itemsArray, setitemsArray] = useState([]);
 
   const handleClick = (title, price, quantity) => {
-    const basePrice = Number(price); // Store the base price separately
-    setitemsArray([...itemsArray, { title, price: basePrice * quantity, quantity, basePrice }]);
+    const itemExists = itemsArray.some((item) => item.title === title);
+
+    if (itemExists) {
+      alert("This item is already in the list!");
+    } else {
+      const basePrice = Number(price);
+      setitemsArray([...itemsArray, { title, price: basePrice * quantity, quantity, basePrice }]);
+    }
   }
 
   const handleDelete = (index) => {
@@ -19,7 +25,7 @@ const page = () => {
   const handleIncrement = (index) => {
     const newItemsArray = [...itemsArray];
     newItemsArray[index].quantity++;
-    newItemsArray[index].price = newItemsArray[index].basePrice * newItemsArray[index].quantity; // Update price based on quantity
+    newItemsArray[index].price = newItemsArray[index].basePrice * newItemsArray[index].quantity;
     setitemsArray(newItemsArray);
   }
 
@@ -27,7 +33,7 @@ const page = () => {
     const newItemsArray = [...itemsArray];
     if (newItemsArray[index].quantity > 1) {
       newItemsArray[index].quantity--;
-      newItemsArray[index].price = newItemsArray[index].basePrice * newItemsArray[index].quantity; // Update price based on quantity
+      newItemsArray[index].price = newItemsArray[index].basePrice * newItemsArray[index].quantity;
       setitemsArray(newItemsArray);
     }
   }
