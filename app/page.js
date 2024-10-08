@@ -60,6 +60,11 @@ const page = () => {
       alert("Please fill in all the required fields!");
       return;
     }
+
+    if(cashRec < totalPrice){
+      alert("Cash Received should be more than or equal to Total Price!");
+      return;
+    }
   
     const doc = new jsPDF();
   
@@ -93,7 +98,7 @@ const page = () => {
 
   return (
     <>
-    <div className='bg-blue-200 h-[100vh] w-full flex justify-center items-center'>
+    <div className='bg-blue-200 h-[100vh] w-full flex justify-center items-center gap-5'>
       <div className='w-[35%] h-[80vh] border border-black bg-white'>
         <h2 className='text-center text-2xl font-bold'>Order Your Food</h2>
         <table className='w-full border-collapse'>
